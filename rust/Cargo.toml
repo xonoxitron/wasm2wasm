@@ -1,0 +1,10 @@
+[package]
+description = "wasm2wasm bridge between Go and Rust WebAssembly runtimes"
+edition = "2021"
+license = "MIT"
+name = "wasm2wasm"
+repository = "https://github.com/xonoxitron/wasm2wasm"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
