@@ -1,6 +1,6 @@
 # wasm2wasm: Go + Rust WASM Interop
 
-wasm2wasm is a project that demonstrates WebAssembly (WASM) interoperation between Go and Rust modules using JavaScript as the intermediary. The project provides a web-based interface where users can perform addition and subtraction operations using both the Go and Rust Wasm modules.
+wasm2wasm is a project that demonstrates WebAssembly (WASM) interoperation between Go and Rust modules using JavaScript as the intermediary. The project provides a web-based interface where users can perform addition and subtraction operations using both the Go and Rust WASM modules.
 
 ## Project Structure
 
@@ -15,21 +15,21 @@ The project consists of the following directories and files:
   - **Cargo.toml**: Cargo manifest file.
 
 - **bridge/**: Contains the JavaScript and HTML files for the web interface.
-  - **wasm_exec.js**: JavaScript file necessary for running Go Wasm modules.
-  - **wasm2wasm.js**: JavaScript file that handles loading and interoperation between Go and Rust Wasm modules.
+  - **wasm_exec.js**: JavaScript file necessary for running Go WASM modules.
+  - **wasm2wasm.js**: JavaScript file that handles loading and interoperation between Go and Rust WASM modules.
   - **wasm2wasm.html**: HTML file providing the web interface for performing operations.
 
 ## Building the Project
 
-To build the project and generate the Wasm modules, follow these steps:
+To build the project and generate the WASM modules, follow these steps:
 
-1. Compile the Rust module to Wasm:
+1. Compile the Rust module to WASM:
 
    ```bash
    rustc --target wasm32-unknown-unknown --crate-type cdylib ./rust/main.rs -o ./bridge/rust_main.wasm
    ```
 
-2. Compile the Go module to Wasm:
+2. Compile the Go module to WASM:
 
    ```bash
    GOOS=js GOARCH=wasm go build -o ./bridge/go_main.wasm ./go/main.go
@@ -58,34 +58,34 @@ To run the project, you need to serve the files over a web server. You can use a
 
 Once the project is running in your browser, you'll see the web interface with two input fields (a and b) and two buttons for performing addition and subtraction operations.
 
-- **Add with Go WASM**: Calculates the sum of values entered in the 'a' and 'b' fields using the Go Wasm module.
+- **Add with Go WASM**: Calculates the sum of values entered in the 'a' and 'b' fields using the Go WASM module.
 
-- **Sub with Rust WASM**: Calculates the subtraction of values entered in the 'a' and 'b' fields using the Rust Wasm module.
+- **Sub with Rust WASM**: Calculates the subtraction of values entered in the 'a' and 'b' fields using the Rust WASM module.
 
 The result of the operation will be displayed in the 'r' field.
 
 ## Understanding the Code
 
-The project consists of two main components: the Go Wasm module and the Rust Wasm module, which are both loaded and interacted with using JavaScript as the intermediary. Here's a brief explanation of each component:
+The project consists of two main components: the Go WASM module and the Rust WASM module, which are both loaded and interacted with using JavaScript as the intermediary. Here's a brief explanation of each component:
 
-- **Go Wasm Module (main.go)**:
-  - The `main.go` file contains the Go code for the Wasm module.
+- **Go WASM Module (main.go)**:
+  - The `main.go` file contains the Go code for the WASM module.
   - The `add` function performs addition of two numbers and is registered as an exported function using `js.Global().Set`.
   - The `registerCallback` function registers the `add` function as a callback for JavaScript to invoke.
-  - The `main` function initializes the Go Wasm module, registers the callback, and waits indefinitely for JavaScript calls.
+  - The `main` function initializes the Go WASM module, registers the callback, and waits indefinitely for JavaScript calls.
 
-- **Rust Wasm Module (main.rs)**:
-  - The `main.rs` file contains the Rust code for the Wasm module.
+- **Rust WASM Module (main.rs)**:
+  - The `main.rs` file contains the Rust code for the WASM module.
   - The `subtract` function performs subtraction of two numbers.
-  - The `initialize` function logs a message indicating the initialization of the Rust Wasm module.
+  - The `initialize` function logs a message indicating the initialization of the Rust WASM module.
   - The `extern` block defines the `console_log` function, which allows Rust to log messages to the JavaScript console.
 
 - **JavaScript Interoperability (wasm2wasm.js)**:
-  - The `loadGoWasm` function loads and runs the Go Wasm module using the `Go` class and WebAssembly APIs.
-  - The `loadRustWasm` function loads and instantiates the Rust Wasm module, defining the `console_log` function as an import.
-  - The `addWithGo` function is called when the "Add with Go WASM" button is clicked, invoking the Go Wasm module's `add` function and updating the result field.
-  - The `subtractWithRust` function is called when the "Sub with Rust WASM" button is clicked, invoking the Rust Wasm module's `subtract` function and updating the result field.
+  - The `loadGoWasm` function loads and runs the Go WASM module using the `Go` class and WebAssembly APIs.
+  - The `loadRustWasm` function loads and instantiates the Rust WASM module, defining the `console_log` function as an import.
+  - The `addWithGo` function is called when the "Add with Go WASM" button is clicked, invoking the Go WASM module's `add` function and updating the result field.
+  - The `subtractWithRust` function is called when the "Sub with Rust WASM" button is clicked, invoking the Rust WASM module's `subtract` function and updating the result field.
 
 ## Conclusion
 
-wasm2wasm demonstrates how to achieve Wasm interoperation between Go and Rust modules using JavaScript as the bridge. The project provides a clear example of how to load, initialize, and interact with Wasm modules from different languages. You can use this project as a starting point for more complex interoperations or as a reference for understanding Wasm interop concepts. Feel free to explore and modify the project to suit your needs!
+wasm2wasm demonstrates how to achieve WASM interoperation between Go and Rust modules using JavaScript as the bridge. The project provides a clear example of how to load, initialize, and interact with WASM modules from different languages. You can use this project as a starting point for more complex interoperations or as a reference for understanding WASM interop concepts. Feel free to explore and modify the project to suit your needs!
